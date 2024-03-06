@@ -1,18 +1,13 @@
 <!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-
-	Jazz from https://www.deviantart.com/amirisrcdf1163/art/wide-Jazz-Jackrabbit-walking-853105195
--->
-<html>
+<!-- Jazz from https://www.deviantart.com/amirisrcdf1163/art/wide-Jazz-Jackrabbit-walking-853105195 -->
+<html autofocus>
 	<head>
 		<title>Portfolio Page</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/stars.css" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="https://unpkg.com/howler@2.2.3/dist/howler.min.js"></script>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 
@@ -26,7 +21,7 @@
 					<div id="intro">
 						<h1> My portfolio </h1>
 						<p>Back-end focused Full Stack Developer</p>
-						<p>If not around, mastering <b>Java</b> with <b>Full Stack Development</b> 💨🥕</p>
+						<p>If not around, mastering <b>Java</b> with <b>Full Stack Development</b> <span  onmouseover="playAudio('\\assets\\sounds\\YAM.WAV')" >💨🥕</span></p>
 						<p><img src="images/jazzRunning.gif" alt="this slowpoke moves"  width="100"/></p>
 						
 						<ul class="icons">
@@ -45,6 +40,7 @@
 									<p>I am an enthusiastic learner and full stack developer. <br>
 									☕Mastering Java☕/🅰️Angular🅰️/🍃Spring Boot🍃 full stack development</p>
 								</header>
+
 								<a href="https://github.com/developersCradle/notebook" class="image main"><img src="images/toyTrailPic.PNG" alt="pic of game" /></a>
 								<p><b>Toy Trail.</b> Unity game for kids</p>
 								<ul class="actions special">
@@ -57,26 +53,41 @@
 							<section class="posts">
 								<article>
 									<header>
-										<h2><a href="https://github.com/developersCradle/code-challange-rest-api">REST CRUD API</a></h2>
+										<h2><a href="https://github.com/developersCradle/code-challange-rest-api#backend-task-eng">REST CRUD API</a></h2>
 									</header>
-									<a href="https://github.com/developersCradle/code-challange-rest-api" class="image fit"><img src="images/javaSwaggerSpringCRUD.jpg" alt="javaSwaggerSpringCRUD here" /></a>
+									<a href="https://github.com/developersCradle/code-challange-rest-api#backend-task-eng" class="image fit"><img src="images/javaSwaggerSpringCRUD.jpg" alt="javaSwaggerSpringCRUD here" /></a>
 									<p><b>REST API with Spring Boot.</b> Java, Spring Boot, Docker, Docker Compose, Swagger, OpenJDK, MySQL, REST</p>
 									<ul class="actions special">
-										<li><a href="https://github.com/developersCradle/code-challange-rest-api" class="button">Check the code‍💻!</a></li>
+										<li><input type="button" onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challange-rest-api#backend-task-eng')" value="Check the code‍💻!"/></li>
 									</ul>
 								</article>
+								
 								<article>
 									<header>
-										<h2><a href="http://secret.cop.fi/asema/anturit.php">Weather Station</a></h2>
+										<h2><a href="https://github.com/developersCradle/weather-station#kuvia-projektista">Weather Station</a></h2>
 									</header>
-									<a href="https://github.com/developersCradle/saaAsema" class="image fit"><img src="images/centriaSaaAsema.jpg" alt="Weather station is here" /></a>
+									<!-- GitHub redirects form old URL to new one, but one should use the latest URL since Policies can change  -->
+									<a href="https://github.com/developersCradle/weather-station#kuvia-projektista" class="image fit"><img src="images/centriaSaaAsema.jpg" alt="Weather station is here" /></a>
 									<p><b>Weather stations with Raspberry Pi.</b> Html, Css, Python, Api, Php, C3 Library </p>
-									<ul class="actions special">
-										<li><a href="https://github.com/developersCradle/saaAsema" class="button">Check the code‍💻!</a></li>
+									<ul class="actions special"> 
+										<li><input type="button" onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/weather-station#kuvia-projektista')" value="Check the code‍💻!"/></li>
 										<li><a href="http://secret.cop.fi/asema/anturit.php" class="button">Check the live!</a></li>
-										
 									</ul>
 								</article>
+								
+								<article>
+									<header>
+										<h2><a href="https://github.com/developersCradle/code-challenge-database-optimization">Database optimization</a></h2>
+									</header>
+									<!-- GitHub redirects form old URL to new one, but one should use the latest URL since Policies can change  -->
+									<a href="https://github.com/developersCradle/code-challenge-database-optimization" class="image fit"><img src="images/domaCareSymbol.png" alt="db optimization" /></a>
+									<p><b>Backend task, with database optimization. </b> Eclipse Jersey REST framework, MariaDB design,  Java, JDBC, Dependency-injection, Transaction, Rollbacks, Documenting, Docker, Docker-compose, Maven </p>
+									<ul class="actions special"> 
+										<li><input type="button" onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challenge-database-optimization')" value="Check the code‍💻!"/></li>
+										
+									</ul> 
+								</article>
+
 								<article>
 									<header>
 										<h2><a href="https://github.com/developersCradle/code-challenge-to-do-software">Todo-app in Java</a></h2>
@@ -84,7 +95,7 @@
 									<a href="https://github.com/developersCradle/code-challenge-to-do-software" class="image fit"><img src="images/todoJspPic.PNG" alt="todo pic jsp"/></a>
 									<p><b>To-do application to add and remove tasks.</b> SQLite, Jsp(Java), Bootstrap, Tomcat</p>
 									<ul class="actions special">
-										<li><a href="https://github.com/developersCradle/code-challenge-to-do-software" class="button">Check the code‍💻!</a></li>
+										<li><input type="button" onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challenge-to-do-software')" value="Check the code‍💻!"/></li>
 									</ul>
 								</article>
 
@@ -98,6 +109,22 @@
 										<li><a href="https://github.com/developersCradle/designg-patterns-and-software-architecture/tree/main/Section%2011" class="button">Check example chapter 📖!</a></li>
 									</ul>
 								</article>
+
+								<article>
+									
+									<!-- 
+									<header>
+										<h2><a href="https://github.com/developersCradle/code-challenge-database-optimization">Database optimization</a></h2>
+									</header>
+									GitHub redirects form old URL to new one, but one should use the latest URL since Policies can change
+									-->
+									<a href="#" class="image fit"><img src="images/chessBanner.jpg" alt="Chess engine" /></a>
+									<!-- <p><b>Backend task, with database optimization </b>  </p>
+									<ul class="actions special"> 
+										<li><input type="button" onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challenge-database-optimization')" value="Check the code‍💻!"/></li>
+									</ul> 
+
+								</article> -->
 
 							</section>
 

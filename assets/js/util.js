@@ -1,3 +1,22 @@
+
+function CheckTheCode(audioSrc, destUrl) {
+	playAudio(audioSrc);
+	setTimeout(function () {
+		window.location = destUrl;
+	}, 1200);
+}
+
+function playAudio(audioSrc) {
+	var sound = new Howl({
+		src: [audioSrc],
+		volume: 0.1,
+	});
+	sound.play();
+}
+
+
+
+
 (function($) {
 
 	/**
