@@ -1,17 +1,42 @@
+function jazzEatsCarrot(audioSrc) {
+	var jazz = document.querySelector('#jazz');
+	jazz.classList.add('moved');
+	
+	jazz.addEventListener('animationiteration', () => {
+		//Jazz have been moved
+		console.log("Jazz finished moving.")
+		jazz.classList.remove('moved');
+
+	  }, { once: true });
+
+	  jazz.addEventListener('animationstart', function (event) {
+		//Jazz started to move
+		//Todo calc distances and move accordingly. This won't work all screen sizes
+		console.log("Jazz started to move.")
+		setTimeout(() => {
+			playAudio(audioSrc);
+		  }, 1700);
+
+    }, { once: true });
+}
 
 function CheckTheCode(audioSrc, destUrl) {
+
 	playAudio(audioSrc);
 	setTimeout(function () {
 		window.location = destUrl;
 	}, 1200);
+
 }
 
 function playAudio(audioSrc) {
+
 	var sound = new Howl({
 		src: [audioSrc],
 		volume: 0.1,
 	});
 	sound.play();
+
 }
 
 

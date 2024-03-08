@@ -1,5 +1,6 @@
-<!DOCTYPE HTML>
 <!-- Jazz from https://www.deviantart.com/amirisrcdf1163/art/wide-Jazz-Jackrabbit-walking-853105195 -->
+
+<!DOCTYPE HTML>
 <html autofocus>
 	<head>
 		<title>Portfolio Page</title>
@@ -7,6 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/stars.css" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- <link rel="stylesheet" href="assets/css/itOrc.css" /> -->
 		<script src="https://unpkg.com/howler@2.2.3/dist/howler.min.js"></script>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
@@ -21,8 +23,8 @@
 					<div id="intro">
 						<h1> My portfolio </h1>
 						<p>Back-end focused Full Stack Developer</p>
-						<p>If not around, mastering <b>Java</b> with <b>Full Stack Development</b> <span  onmouseover="playAudio('\\assets\\sounds\\YAM.WAV')" >💨🥕</span></p>
-						<p><img src="images/jazzRunning.gif" alt="this slowpoke moves"  width="100"/></p>
+						<p>If not around, mastering <b>Java</b> with <b>Full Stack Development</b> <span onmouseover="jazzEatsCarrot('\\assets\\sounds\\YAM.WAV')" >💨🥕</span></p>
+						<p><img id="jazz" src="images/jazzRunning.gif" alt="this slowpoke moves"  width="100"/></p>
 						
 						<ul class="icons">
 							<li><a href="https://github.com/developersCradle" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
@@ -36,15 +38,19 @@
 					<div id="main">
 						<!-- Featured Post -->
 							<article class="post featured">
+
 								<header class="major">
 									<p>I am an enthusiastic learner and full stack developer. <br>
 									☕Mastering Java☕/🅰️Angular🅰️/🍃Spring Boot🍃 full stack development</p>
 								</header>
 
-								<a href="https://github.com/developersCradle/notebook" class="image main"><img src="images/toyTrailPic.PNG" alt="pic of game" /></a>
-								<p><b>Toy Trail.</b> Unity game for kids</p>
+								<header>
+									<h2><a href="https://github.com/developersCradle/notebook#picture-from-project">Unity game</a></h2>
+								</header>
+								<a href="https://github.com/developersCradle/notebook#picture-from-project" class="image main"><img src="images/toyTrailPic.PNG" alt="pic of game" /></a>
+								<p><b>Toy Trail, Unity game for kids.</b> C#, Unity, Itween, Hexagon</p>
 								<ul class="actions special">
-									<li><a href="https://github.com/developersCradle/notebook" class="button large">Check the details📖!</a></li>
+									<li><a href="https://github.com/developersCradle/notebook#picture-from-project" class="button large">Check the details📖!</a></li>
 									<li><a href="https://www.youtube.com/watch?v=2ItnT4k01Cs" class="button large">Check the video🎞️!</a></li>
 								</ul>
 							</article>
@@ -53,12 +59,12 @@
 							<section class="posts">
 								<article>
 									<header>
-										<h2><a href="https://github.com/developersCradle/code-challange-rest-api#backend-task-eng">REST CRUD API</a></h2>
+										<h2><a href="https://github.com/developersCradle/code-challange-rest-api#codemen">REST CRUD API</a></h2>
 									</header>
-									<a href="https://github.com/developersCradle/code-challange-rest-api#backend-task-eng" class="image fit"><img src="images/javaSwaggerSpringCRUD.jpg" alt="javaSwaggerSpringCRUD here" /></a>
+									<a href="" class="image fit"><img src="images/codemenLogo.png" alt="javaSwaggerSpringCRUD here" height=110px"/></a>
 									<p><b>REST API with Spring Boot.</b> Java, Spring Boot, Docker, Docker Compose, Swagger, OpenJDK, MySQL, REST</p>
 									<ul class="actions special">
-										<li><input type="button" onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challange-rest-api#backend-task-eng')" value="Check the code‍💻!"/></li>
+										<li><input type="button" onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challange-rest-api#codemen')" value="Check the code‍💻!"/></li>
 									</ul>
 								</article>
 								
@@ -77,25 +83,31 @@
 								
 								<article>
 									<header>
-										<h2><a href="https://github.com/developersCradle/code-challenge-database-optimization">Database optimization</a></h2>
+										<h2><a href="https://github.com/developersCradle/code-challenge-database-optimization#domaCare">Database optimization</a></h2>
 									</header>
 									<!-- GitHub redirects form old URL to new one, but one should use the latest URL since Policies can change  -->
-									<a href="https://github.com/developersCradle/code-challenge-database-optimization" class="image fit"><img src="images/domaCareSymbol.png" alt="db optimization" /></a>
-									<p><b>Backend task, with database optimization. </b> Eclipse Jersey REST framework, MariaDB design,  Java, JDBC, Dependency-injection, Transaction, Rollbacks, Documenting, Docker, Docker-compose, Maven </p>
+									<a href="https://github.com/developersCradle/code-challenge-database-optimization#domaCareoptimization" class="image fit"><img src="images/domaCareSymbol.png" alt="db optimization" /></a>
+									<p><b>Backend task, with database optimization. </b> Java, Eclipse Jersey REST framework, MariaDB design, JDBC, Dependency-injection, Transaction, Rollbacks, Documenting, Docker, Docker-compose, Maven </p>
 									<ul class="actions special"> 
-										<li><input type="button" onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challenge-database-optimization')" value="Check the code‍💻!"/></li>
+										<li><input type="button" onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challenge-database-optimization#domaCare')" value="Check the code‍💻!"/></li>
 										
 									</ul> 
 								</article>
 
 								<article>
 									<header>
-										<h2><a href="https://github.com/developersCradle/code-challenge-to-do-software#kuva1">Todo-app in Java</a></h2>
+										<h2><a href="https://github.com/developersCradle/code-challenge-to-do-software#logos">Todo-app</a></h2>
 									</header>
-									<a href="https://github.com/developersCradle/code-challenge-to-do-software#kuva1" class="image fit"><img src="images/todoJspPic.PNG" alt="todo pic jsp"/></a>
-									<p><b>To-do application to add and remove tasks.</b> SQLite, Jsp(Java), Bootstrap, Tomcat</p>
+
+									<a href="https://github.com/developersCradle/code-challenge-to-do-software#logos" class="image fit"> 
+										<img src="images/kide.png" width="100px" height="70px"> 
+										<img src="images/topconHealthCare.jpg" width="100px" height="100px">
+									</a>
+												
+									<p><b>To-do application to add and remove tasks.</b> Jsp(Java), SQLite, Bootstrap, Tomcat</p>
+
 									<ul class="actions special">
-										<li><input type="button" onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challenge-to-do-software#kuva1')" value="Check the code‍💻!"/></li>
+										<li><input type="button" onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challenge-to-do-software#logos')" value="Check the code‍💻!"/></li>
 									</ul>
 								</article>
 
@@ -118,7 +130,7 @@
 									</header>
 									GitHub redirects form old URL to new one, but one should use the latest URL since Policies can change
 									-->
-									<a href="#" class="image fit"><img src="images/chessBanner.jpg" alt="Chess engine" /></a>
+									<a href="#" class="image fit"><img src="images/chessBanner.jpg" alt="Chess engine" />Coming soon!</a>
 									<!-- <p><b>Backend task, with database optimization </b>  </p>
 									<ul class="actions special"> 
 										<li><input type="button" onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challenge-database-optimization')" value="Check the code‍💻!"/></li>
@@ -142,3 +154,22 @@
 
 	</body>
 </html>
+
+<!-- todo it orc thing
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0 user-scalable=no">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Permanent+Marker" rel="stylesheet">
+</head>
+
+<body>
+
+  <section class="splash-screen load">
+    <div class="title">
+      <h1 class="title-top"><span class="big">I</span>t</h1>
+      <h1 class="title-bottom"><span class="big">O</span>r<span class="big">C</span></h1>
+    </div>  
+</body>
+</html> -->

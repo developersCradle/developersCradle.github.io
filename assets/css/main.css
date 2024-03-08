@@ -1,13 +1,36 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900");
 
-/*
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+/* TODO works only in full screen. Use pythagorean theorem */
 
+@keyframes moveRightUpBack {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    25% {
+        transform: translateX(290%) translateY(0); 
+    }
+    35% {
+        transform: translateX(290%) translateY(-90%);
+    }
+    45% {
+		transform: translateX(290%) translateY(10%); 
+		
+    }
+	50% {
+		transform: translateX(290%) translateY(10%) scaleX(-1); 
+	}
+    70% {
+		transform: translateX(0) translateY(0) scaleX(-1); 
+    }
+	75% {
+        transform: translateX(0) translateY(0);
+	}
+}
 
+.moved {
+    animation: moveRightUpBack 5s ease-in-out infinite;
+}
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
