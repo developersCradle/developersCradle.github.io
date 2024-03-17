@@ -1,6 +1,23 @@
 function jazzEatsCarrot(audioSrc) {
 	var jazz = document.querySelector('#jazz');
 	jazz.classList.add('moved');
+
+	// jazz.style.setProperty('--translateX-reverse', '290%');
+    // jazz.style.setProperty('--translateY-reverse', '20'); TODO figure this later
+	// jazz.style.setProperty('--animation-duration', '5s'); Do we need seconds
+
+
+	// function getXandY
+//   // Calculate the position difference between containers
+//   var offsetX = container2.offsetLeft - container1.offsetLeft;
+//   var offsetY = container2.offsetTop - container1.offsetTop;
+
+
+
+
+
+	console.log(jazz);
+
 	
 	jazz.addEventListener('animationiteration', () => {
 		//Jazz have been moved
@@ -19,6 +36,7 @@ function jazzEatsCarrot(audioSrc) {
 
     }, { once: true });
 }
+
 
 function CheckTheCode(audioSrc, destUrl) {
 

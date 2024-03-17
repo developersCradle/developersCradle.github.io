@@ -9,6 +9,7 @@
     }
     25% {
         transform: translateX(290%) translateY(0); 
+		/* transform: translateX(var(--translateX)) translateY(var(--translateY));  */
     }
     35% {
         transform: translateX(290%) translateY(-90%);
@@ -2850,6 +2851,12 @@ input, select, textarea {
 				border-radius: 100%;
 				font-size: 1.25rem;
 			}
+
+			/* This style here for SVG to make it even, until better way have been found */
+			ul.icons li .fa-k:before {
+				font-size: 1.50rem;
+			}
+
 
 		ul.icons.alt li .icon:before {
 			-moz-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
