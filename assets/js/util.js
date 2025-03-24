@@ -43,7 +43,7 @@ function CheckTheCode(audioSrc, destUrl) {
 	playAudio(audioSrc);
 	setTimeout(function () {
 		window.location = destUrl;
-	}, 1200);
+	}, 1500);
 
 }
 
