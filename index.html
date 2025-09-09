@@ -1,8 +1,5 @@
 <!DOCTYPE HTML>
 <html autofocus>
-<a onclick="CheckTheCode('\\assets\\sounds\\reactiveManifesto.mp3', 'http://www.reactivemanifesto.org/')"> <img
-		style="border: 0; position: fixed; left: 0; top:0; z-index: 9000"
-		src="//d379ifj7s9wntv.cloudfront.net/reactivemanifesto/images/ribbons/we-are-reactive-white-left.png"> </a>
 <title>Portfolio Page</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -13,6 +10,14 @@
 	<link rel="stylesheet" href="assets/css/noscript.css" />
 </noscript>
 
+<head>
+	<a 
+	onmouseleave="swapImageOnHover()"
+	onmouseenter="swapImageOnHover(); playAudio('\\assets\\sounds\\SOUND10.WAV');"
+	onclick="CheckTheCode('\\assets\\sounds\\reactiveManifesto.mp3', 'http://www.reactivemanifesto.org/')"> <img
+			style="border: 0; position: fixed; left: 0; top:0; z-index: 9000"
+			src="//d379ifj7s9wntv.cloudfront.net/reactivemanifesto/images/ribbons/we-are-reactive-white-left.png"> </a>
+</head>
 <body class="is-preload">
 	<!-- Wrapper -->
 	<div id="wrapper" class="fade-in">
@@ -21,7 +26,9 @@
 		<div id="stars3"></div>
 		<!-- Intro -->
 		<div id="intro">
-			<img src="images/theJavaRabbit.png" alt="Cool logo" style="max-width:100%; height:auto;">
+		<div class="stage">
+			<canvas id="canvas" style="max-width:100%; height:auto;"></canvas>
+		</div>
 			<p>Back-end focused Full Stack Developer</p>
 			<p>If not around, mastering <b>Java</b> with <b>Full Stack Development</b> 💨<span
 					onmouseover="jazzEatsCarrot('\\assets\\sounds\\YAM.WAV')" style="font-size: 25px;">🥕</span></p>
@@ -40,7 +47,6 @@
 			</ul>
 		</div>
 
-
 		<!-- Main -->
 		<div id="main">
 			<!-- Featured Post -->
@@ -56,7 +62,6 @@
 							style="font-size: 30px; display: inline-block;cursor: pointer;">🍖</span>
 					</div>
 				</header>
-
 
 				<header>
 					<h2><a
@@ -225,7 +230,6 @@
 
 
 				<article>
-
 					<header>
 						<h2><a
 								href="https://github.com/developersCradle/jchess?tab=readme-ov-file#follow-along-making-chess-in-java">Chess
@@ -253,6 +257,134 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+<script>
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d', { alpha: true });
+
+let currentIndex = 0;
+let baseWidth, baseHeight; // set once from first image
+const loadedImages = [];
+
+const sampleImages = [
+	"theJavaRabbit.png",
+	"rxRabbitSTROOONG.png"
+];
+
+// Call this after images are loaded.
+function initCanvasFromFirstImage(firstImg) {
+	baseWidth = firstImg.naturalWidth;
+	baseHeight = firstImg.naturalHeight;
+	canvas.width = baseWidth;
+	canvas.height = baseHeight;
+}
+
+// Utility: compute scaled size + offsets to center.
+function getFitDimensions(img, boxW, boxH) {
+  const imgW = img.naturalWidth;
+  const imgH = img.naturalHeight;
+
+  const scale = Math.min(boxW / imgW, boxH / imgH);
+  const drawW = imgW * scale;
+  const drawH = imgH * scale;
+
+  const offsetX = (boxW - drawW) / 2;
+  const offsetY = (boxH - drawH) / 2;
+
+  return { drawW, drawH, offsetX, offsetY };
+}
+
+function loadAll(imgUrls) {
+  return Promise.all(imgUrls.map(url => new Promise((res, rej) => {
+    const i = new Image();
+    i.crossOrigin = "anonymous";
+    i.onload = () => res(i);
+    i.onerror = rej;
+    i.src = url;
+  })));
+}
+// Pixelated draw with centering + aspect ratio preserved
+function drawPixelated(img, pixelScale) {
+  const w = baseWidth;
+  const h = baseHeight;
+
+  const { drawW, drawH, offsetX, offsetY } = getFitDimensions(img, w, h);
+
+  // Compute scaled-down size
+  const smallW = Math.max(1, Math.round(drawW / pixelScale));
+  const smallH = Math.max(1, Math.round(drawH / pixelScale));
+
+  // Temp canvas for pixelation
+  const tmp = document.createElement('canvas');
+  tmp.width = smallW;
+  tmp.height = smallH;
+  const tctx = tmp.getContext('2d');
+
+  // Draw image scaled into tiny canvas
+  tctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, smallW, smallH);
+
+  // Clear & draw pixelated version centered
+  ctx.clearRect(0, 0, w, h);
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(tmp, 0, 0, smallW, smallH, offsetX, offsetY, drawW, drawH);
+}
+
+
+// Animate a transition from pixelScaleStart -> pixelScaleEnd.
+function animateTransition(fromImg, toImg, duration = 700) {
+  const start = performance.now();
+  const w = canvas.width, h = canvas.height;
+
+  function frame(now) {
+    const t = Math.min(1, (now - start) / duration);
+
+    // Ease function (easeInOutQuad).
+    const eased = t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
+
+    // We animate: first quickly pixelate the FROM image (scale up), then switch mid-way to TO and de-pixelate
+    // Use a two-phase trick: when eased < 0.5 show fromImg pixelation increasing, else show toImg pixelation decreasing
+    if (eased < 0.5) {
+      // phase 1: pixelate fromImg (progress 0 -> 1)
+      const progress = eased / 0.5;
+      const pixelSize = 1 + progress * parseInt(50); // pixelize more.
+      drawPixelated(fromImg, pixelSize);
+    } else {
+      // phase 2: de-pixelate toImg (progress 0 -> 1)
+      const progress = (eased - 0.5) / 0.5;
+      const pixelSize = 1 + (1 - progress) * parseInt(50); // pixelize less
+      drawPixelated(toImg, pixelSize);
+    }
+
+    if (t < 1) {
+      requestAnimationFrame(frame);
+    } else {
+      // Final draw: ensure it's fully de-pixelated.
+      drawPixelated(toImg, 1);
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+loadAll(sampleImages).then(imgs => {
+  loadedImages.push(...imgs);
+  initCanvasFromFirstImage(loadedImages[0]);  // Fix canvas size.
+  drawPixelated(loadedImages[0], 1);          // Draw first normally.
+}).catch(err => {
+  console.error("Image load failed:", err);
+});
+
+// Define a reusable function.
+function swapImageOnHover() {
+  if (loadedImages.length < 2) return;
+
+  const from = loadedImages[currentIndex];
+  currentIndex = (currentIndex + 1) % loadedImages.length;
+  const to = loadedImages[currentIndex];
+
+  animateTransition(from, to, 750);
+}
+
+</script>
 
 </body>
 
