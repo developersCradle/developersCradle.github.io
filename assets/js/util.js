@@ -1,3 +1,132 @@
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d', { alpha: true });
+
+let currentIndex = 0;
+let baseWidth, baseHeight; // set once from first image
+const loadedImages = [];
+
+const sampleImages = [
+	"images/theJavaRabbit.png",
+	"images/rxRabbitSTROOONG.png"
+];
+
+let sound = null;
+
+
+// Call this after images are loaded.
+function initCanvasFromFirstImage(firstImg) {
+	baseWidth = firstImg.naturalWidth;
+	baseHeight = firstImg.naturalHeight;
+	canvas.width = baseWidth;
+	canvas.height = baseHeight;
+}
+
+// Utility: compute scaled size + offsets to center.
+function getFitDimensions(img, boxW, boxH) {
+  const imgW = img.naturalWidth;
+  const imgH = img.naturalHeight;
+
+  const scale = Math.min(boxW / imgW, boxH / imgH);
+  const drawW = imgW * scale;
+  const drawH = imgH * scale;
+
+  const offsetX = (boxW - drawW) / 2;
+  const offsetY = (boxH - drawH) / 2;
+
+  return { drawW, drawH, offsetX, offsetY };
+}
+
+function loadAll(imgUrls) {
+  return Promise.all(imgUrls.map(url => new Promise((res, rej) => {
+    const i = new Image();
+    i.crossOrigin = "anonymous";
+    i.onload = () => res(i);
+    i.onerror = rej;
+    i.src = url;
+  })));
+}
+// Pixelated draw with centering + aspect ratio preserved
+function drawPixelated(img, pixelScale) {
+  const w = baseWidth;
+  const h = baseHeight;
+
+  const { drawW, drawH, offsetX, offsetY } = getFitDimensions(img, w, h);
+
+  // Compute scaled-down size
+  const smallW = Math.max(1, Math.round(drawW / pixelScale));
+  const smallH = Math.max(1, Math.round(drawH / pixelScale));
+
+  // Temp canvas for pixelation
+  const tmp = document.createElement('canvas');
+  tmp.width = smallW;
+  tmp.height = smallH;
+  const tctx = tmp.getContext('2d');
+
+  // Draw image scaled into tiny canvas
+  tctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, smallW, smallH);
+
+  // Clear & draw pixelated version centered
+  ctx.clearRect(0, 0, w, h);
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(tmp, 0, 0, smallW, smallH, offsetX, offsetY, drawW, drawH);
+}
+
+
+// Animate a transition from pixelScaleStart -> pixelScaleEnd.
+function animateTransition(fromImg, toImg, duration = 700) {
+  const start = performance.now();
+  const w = canvas.width, h = canvas.height;
+
+  function frame(now) {
+    const t = Math.min(1, (now - start) / duration);
+
+    // Ease function (easeInOutQuad).
+    const eased = t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
+
+    // We animate: first quickly pixelate the FROM image (scale up), then switch mid-way to TO and de-pixelate
+    // Use a two-phase trick: when eased < 0.5 show fromImg pixelation increasing, else show toImg pixelation decreasing
+    if (eased < 0.5) {
+      // phase 1: pixelate fromImg (progress 0 -> 1)
+      const progress = eased / 0.5;
+      const pixelSize = 1 + progress * parseInt(50); // pixelize more.
+      drawPixelated(fromImg, pixelSize);
+    } else {
+      // phase 2: de-pixelate toImg (progress 0 -> 1)
+      const progress = (eased - 0.5) / 0.5;
+      const pixelSize = 1 + (1 - progress) * parseInt(50); // pixelize less
+      drawPixelated(toImg, pixelSize);
+    }
+
+    if (t < 1) {
+      requestAnimationFrame(frame);
+    } else {
+      // Final draw: ensure it's fully de-pixelated.
+      drawPixelated(toImg, 1);
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+loadAll(sampleImages).then(imgs => {
+  loadedImages.push(...imgs);
+  initCanvasFromFirstImage(loadedImages[0]);  // Fix canvas size.
+  drawPixelated(loadedImages[0], 1);          // Draw first normally.
+}).catch(err => {
+  console.error("Image load failed:", err);
+});
+
+// Define a reusable function.
+function swapImageOnHover() {
+  if (loadedImages.length < 2) return;
+
+  const from = loadedImages[currentIndex];
+  currentIndex = (currentIndex + 1) % loadedImages.length;
+  const to = loadedImages[currentIndex];
+
+  animateTransition(from, to, 750);
+}
+
 function jazzEatsCarrot(audioSrc) {
 	var jazz = document.querySelector('#jazz');
 	jazz.classList.add('moved');
@@ -6,18 +135,12 @@ function jazzEatsCarrot(audioSrc) {
 	// jazz.style.setProperty('--translateY-reverse', '20'); TODO figure this later
 	// jazz.style.setProperty('--animation-duration', '5s'); Do we need seconds
 
-
 	// function getXandY
 	//   // Calculate the position difference between containers
 	//   var offsetX = container2.offsetLeft - container1.offsetLeft;
 	//   var offsetY = container2.offsetTop - container1.offsetTop;
 
-
-
-
-
 	console.log(jazz);
-
 
 	jazz.addEventListener('animationiteration', () => {
 		//Jazz have been moved
@@ -46,9 +169,6 @@ function CheckTheCode(audioSrc, destUrl) {
 	}, 1500);
 
 }
-
-
-let sound = null;
 
 function playAudio(audioSrc) {
   // If a sound exists and is playing, do nothing
