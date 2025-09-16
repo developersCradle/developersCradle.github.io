@@ -17,8 +17,12 @@
 	onclick="CheckTheCode('\\assets\\sounds\\reactiveManifesto.mp3', 'http://www.reactivemanifesto.org/')"> <img
 			style="border: 0; position: fixed; left: 0; top:0; z-index: 9000"
 			src="//d379ifj7s9wntv.cloudfront.net/reactivemanifesto/images/ribbons/we-are-reactive-white-left.png"> </a>
+<!-- This is for wolfenstein 3d death effect! -->
+<canvas id="redEffect"></canvas>
 </head>
+
 <body class="is-preload">
+	
 	<!-- Wrapper -->
 	<div id="wrapper" class="fade-in">
 		<div id="stars"></div>
@@ -255,10 +259,11 @@
 						soon!</a>
 					<ul class="actions special">
 						<li><input type="button"
-								onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', '#')"
+								onclick="CheckTheCode('\\assets\\sounds\\Wolfenstein3dDeath.WAV', '#'); fillRedEffect();"
 								value="Check the code‍💻!" /></li>
 					</ul>
 				</article>
+
 			</section>
 		</div>
 	</div>
@@ -271,6 +276,6 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
-
+	
 </body>
 </html>

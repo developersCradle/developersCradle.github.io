@@ -3,7 +3,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d', { alpha: true });
 
 let currentIndex = 0;
-let baseWidth, baseHeight; // set once from first image
+let baseWidth, baseHeight; // Set once from first image.
 const loadedImages = [];
 
 const sampleImages = [
@@ -12,6 +12,45 @@ const sampleImages = [
 ];
 
 let sound = null;
+
+function fillRedEffect() {
+	const canvas = document.getElementById("redEffect");
+	const ctx = canvas.getContext("2d");
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+
+	let w = canvas.width;
+	let h = canvas.height;
+	let spots = [];
+
+	// Pre-generate random spots.
+	for (let i = 0; i < 5000; i++) {
+		spots.push([Math.random() * w, Math.random() * h]);
+	}
+
+	let i = 0;
+	function step() {
+		for (let k = 0; k < 100 && i < spots.length; k++, i++) {
+			let [x, y] = spots[i];
+			ctx.fillStyle = "red";
+			ctx.fillRect(x, y, 4, 4);
+		}
+		if (i < spots.length) {
+			requestAnimationFrame(step);
+		} else {
+			// Fade out after fill.
+			setTimeout(() => {
+				canvas.style.transition = "opacity 1s";
+				canvas.style.opacity = 0;
+				setTimeout(() => {
+					ctx.clearRect(0, 0, w, h);
+					canvas.style.opacity = 1;
+				}, 1000);
+			}, 500);
+		}
+	}
+	step();
+}
 
 
 // Call this after images are loaded.
@@ -24,107 +63,107 @@ function initCanvasFromFirstImage(firstImg) {
 
 // Utility: compute scaled size + offsets to center.
 function getFitDimensions(img, boxW, boxH) {
-  const imgW = img.naturalWidth;
-  const imgH = img.naturalHeight;
+	const imgW = img.naturalWidth;
+	const imgH = img.naturalHeight;
 
-  const scale = Math.min(boxW / imgW, boxH / imgH);
-  const drawW = imgW * scale;
-  const drawH = imgH * scale;
+	const scale = Math.min(boxW / imgW, boxH / imgH);
+	const drawW = imgW * scale;
+	const drawH = imgH * scale;
 
-  const offsetX = (boxW - drawW) / 2;
-  const offsetY = (boxH - drawH) / 2;
+	const offsetX = (boxW - drawW) / 2;
+	const offsetY = (boxH - drawH) / 2;
 
-  return { drawW, drawH, offsetX, offsetY };
+	return { drawW, drawH, offsetX, offsetY };
 }
 
 function loadAll(imgUrls) {
-  return Promise.all(imgUrls.map(url => new Promise((res, rej) => {
-    const i = new Image();
-    i.crossOrigin = "anonymous";
-    i.onload = () => res(i);
-    i.onerror = rej;
-    i.src = url;
-  })));
+	return Promise.all(imgUrls.map(url => new Promise((res, rej) => {
+		const i = new Image();
+		i.crossOrigin = "anonymous";
+		i.onload = () => res(i);
+		i.onerror = rej;
+		i.src = url;
+	})));
 }
-// Pixelated draw with centering + aspect ratio preserved
+// Pixelated draw with centering + aspect ratio preserved.
 function drawPixelated(img, pixelScale) {
-  const w = baseWidth;
-  const h = baseHeight;
+	const w = baseWidth;
+	const h = baseHeight;
 
-  const { drawW, drawH, offsetX, offsetY } = getFitDimensions(img, w, h);
+	const { drawW, drawH, offsetX, offsetY } = getFitDimensions(img, w, h);
 
-  // Compute scaled-down size
-  const smallW = Math.max(1, Math.round(drawW / pixelScale));
-  const smallH = Math.max(1, Math.round(drawH / pixelScale));
+	// Compute scaled-down size.
+	const smallW = Math.max(1, Math.round(drawW / pixelScale));
+	const smallH = Math.max(1, Math.round(drawH / pixelScale));
 
-  // Temp canvas for pixelation
-  const tmp = document.createElement('canvas');
-  tmp.width = smallW;
-  tmp.height = smallH;
-  const tctx = tmp.getContext('2d');
+	// Temp canvas for pixelation.
+	const tmp = document.createElement('canvas');
+	tmp.width = smallW;
+	tmp.height = smallH;
+	const tctx = tmp.getContext('2d');
 
-  // Draw image scaled into tiny canvas
-  tctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, smallW, smallH);
+	// Draw image scaled into tiny canvas.
+	tctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, smallW, smallH);
 
-  // Clear & draw pixelated version centered
-  ctx.clearRect(0, 0, w, h);
-  ctx.imageSmoothingEnabled = false;
-  ctx.drawImage(tmp, 0, 0, smallW, smallH, offsetX, offsetY, drawW, drawH);
+	// Clear & draw pixelated version centered.
+	ctx.clearRect(0, 0, w, h);
+	ctx.imageSmoothingEnabled = false;
+	ctx.drawImage(tmp, 0, 0, smallW, smallH, offsetX, offsetY, drawW, drawH);
 }
 
 
 // Animate a transition from pixelScaleStart -> pixelScaleEnd.
 function animateTransition(fromImg, toImg, duration = 700) {
-  const start = performance.now();
-  const w = canvas.width, h = canvas.height;
+	const start = performance.now();
+	const w = canvas.width, h = canvas.height;
 
-  function frame(now) {
-    const t = Math.min(1, (now - start) / duration);
+	function frame(now) {
+		const t = Math.min(1, (now - start) / duration);
 
-    // Ease function (easeInOutQuad).
-    const eased = t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
+		// Ease function (easeInOutQuad).
+		const eased = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 
-    // We animate: first quickly pixelate the FROM image (scale up), then switch mid-way to TO and de-pixelate
-    // Use a two-phase trick: when eased < 0.5 show fromImg pixelation increasing, else show toImg pixelation decreasing
-    if (eased < 0.5) {
-      // phase 1: pixelate fromImg (progress 0 -> 1)
-      const progress = eased / 0.5;
-      const pixelSize = 1 + progress * parseInt(50); // pixelize more.
-      drawPixelated(fromImg, pixelSize);
-    } else {
-      // phase 2: de-pixelate toImg (progress 0 -> 1)
-      const progress = (eased - 0.5) / 0.5;
-      const pixelSize = 1 + (1 - progress) * parseInt(50); // pixelize less
-      drawPixelated(toImg, pixelSize);
-    }
+		// We animate: first quickly pixelate the FROM image (scale up), then switch mid-way to TO and de-pixelate.
+		// Use a two-phase trick: when eased < 0.5 show fromImg pixelation increasing, else show toImg pixelation decreasing.
+		if (eased < 0.5) {
+			// Phase 1: pixelate fromImg (progress 0 -> 1).
+			const progress = eased / 0.5;
+			const pixelSize = 1 + progress * parseInt(50); // Pixelize more.
+			drawPixelated(fromImg, pixelSize);
+		} else {
+			// Phase 2: de-pixelate toImg (progress 0 -> 1).
+			const progress = (eased - 0.5) / 0.5;
+			const pixelSize = 1 + (1 - progress) * parseInt(50); // Pixelize less.
+			drawPixelated(toImg, pixelSize);
+		}
 
-    if (t < 1) {
-      requestAnimationFrame(frame);
-    } else {
-      // Final draw: ensure it's fully de-pixelated.
-      drawPixelated(toImg, 1);
-    }
-  }
-  requestAnimationFrame(frame);
+		if (t < 1) {
+			requestAnimationFrame(frame);
+		} else {
+			// Final draw: ensure it's fully de-pixelated.
+			drawPixelated(toImg, 1);
+		}
+	}
+	requestAnimationFrame(frame);
 }
 
 loadAll(sampleImages).then(imgs => {
-  loadedImages.push(...imgs);
-  initCanvasFromFirstImage(loadedImages[0]);  // Fix canvas size.
-  drawPixelated(loadedImages[0], 1);          // Draw first normally.
+	loadedImages.push(...imgs);
+	initCanvasFromFirstImage(loadedImages[0]);  // Fix canvas size.
+	drawPixelated(loadedImages[0], 1);          // Draw first normally.
 }).catch(err => {
-  console.error("Image load failed:", err);
+	console.error("Image load failed:", err);
 });
 
 // Define a reusable function.
 function swapImageOnHover() {
-  if (loadedImages.length < 2) return;
+	if (loadedImages.length < 2) return;
 
-  const from = loadedImages[currentIndex];
-  currentIndex = (currentIndex + 1) % loadedImages.length;
-  const to = loadedImages[currentIndex];
+	const from = loadedImages[currentIndex];
+	currentIndex = (currentIndex + 1) % loadedImages.length;
+	const to = loadedImages[currentIndex];
 
-  animateTransition(from, to, 750);
+	animateTransition(from, to, 750);
 }
 
 function jazzEatsCarrot(audioSrc) {
@@ -143,7 +182,7 @@ function jazzEatsCarrot(audioSrc) {
 	console.log(jazz);
 
 	jazz.addEventListener('animationiteration', () => {
-		//Jazz have been moved
+		// Jazz have been moved.
 		console.log("Jazz finished moving.")
 		jazz.classList.remove('moved');
 
@@ -171,19 +210,19 @@ function CheckTheCode(audioSrc, destUrl) {
 }
 
 function playAudio(audioSrc) {
-  // If a sound exists and is playing, do nothing
-  if (sound && sound.playing()) {
-    console.log("Sound is already playing.");
-    return;
-  }
+	// If a sound exists and is playing, do nothing.
+	if (sound && sound.playing()) {
+		console.log("Sound is already playing.");
+		return;
+	}
 
-  // Create and play new sound
-  sound = new Howl({
-    src: [audioSrc],
-    volume: 0.1
-  });
+	// Create and play new sound.
+	sound = new Howl({
+		src: [audioSrc],
+		volume: 0.1
+	});
 
-  sound.play();
+	sound.play();
 }
 
 
