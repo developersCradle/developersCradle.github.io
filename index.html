@@ -12,12 +12,13 @@
 
 <head>
 	<a 
-	onmouseleave="swapImageOnHover()"
-	onmouseenter="swapImageOnHover(); playAudio('\\assets\\sounds\\MENU-CLICK.WAV');"
+	onmouseleave="swapImageOnHoverOnBanner()"
+	onmouseenter="swapImageOnHoverOnBanner(); playAudio('\\assets\\sounds\\MENU-CLICK.WAV');"
 	onclick="CheckTheCode('\\assets\\sounds\\reactiveManifesto.mp3', 'http://www.reactivemanifesto.org/')"> <img
 			style="border: 0; position: fixed; left: 0; top:0; z-index: 9000"
 			src="//d379ifj7s9wntv.cloudfront.net/reactivemanifesto/images/ribbons/we-are-reactive-white-left.png"> </a>
-<!-- This is for wolfenstein 3d death effect! -->
+
+			<!-- This is for wolfenstein 3d death effect! -->
 <canvas id="redEffect"></canvas>
 </head>
 
@@ -37,7 +38,7 @@
 			<p>If not around, mastering <b>Java</b> with <b>Full Stack Development</b> 💨<span
 					onmouseover="jazzEatsCarrot('\\assets\\sounds\\YAM.WAV')" style="font-size: 25px;">🥕</span></p>
 			<p><img id="jazz" src="images/jazzRunning.gif" alt="this slowpoke moves" width="100"
-					onmouseover="playAudio('\\assets\\sounds\\what i am doing brah.mp3')" /></p>
+					onmouseover="playAudio('\\assets\\sounds\\what i am doing brah.mp3'); swapImageOnJazzHover()" /></p>
 
 			<ul class="icons">
 				<li><a onclick="CheckTheCode('\\assets\\sounds\\work-work-peon.mp3', 'https://github.com/developersCradle')"

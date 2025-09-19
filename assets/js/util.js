@@ -4,11 +4,18 @@ const ctx = canvas.getContext('2d', { alpha: true });
 
 let currentIndex = 0;
 let baseWidth, baseHeight; // Set once from first image.
-const loadedImages = [];
+let sampleImages2CanBeSwapped = true;
 
+const loadedImages = [];
 const sampleImages = [
 	"images/theJavaRabbit.png",
 	"images/rxRabbitSTROOONG.png"
+];
+
+const loadedImages2 = [];
+const sampleImages2 = [
+	"images/theJavaRabbit.png",
+	"images/MeeeeItRabbit.png"
 ];
 
 let sound = null;
@@ -85,6 +92,20 @@ function loadAll(imgUrls) {
 		i.src = url;
 	})));
 }
+
+
+
+function loadAll2(imgUrls) {
+	return Promise.all(imgUrls.map(url => new Promise((res, rej) => {
+		const i = new Image();
+		i.crossOrigin = "anonymous";
+		i.onload = () => res(i);
+		i.onerror = rej;
+		i.src = url;
+	})));
+}
+
+
 // Pixelated draw with centering + aspect ratio preserved.
 function drawPixelated(img, pixelScale) {
 	const w = baseWidth;
@@ -155,8 +176,8 @@ loadAll(sampleImages).then(imgs => {
 	console.error("Image load failed:", err);
 });
 
-// Define a reusable function.
-function swapImageOnHover() {
+// Swap method Reactive banner.
+function swapImageOnHoverOnBanner() {
 	if (loadedImages.length < 2) return;
 
 	const from = loadedImages[currentIndex];
@@ -164,6 +185,42 @@ function swapImageOnHover() {
 	const to = loadedImages[currentIndex];
 
 	animateTransition(from, to, 750);
+}
+
+loadAll2(sampleImages2).then(imgs => {
+	loadedImages2.push(...imgs);
+	initCanvasFromFirstImage(loadedImages2[0]);  // Fix canvas size.
+	drawPixelated(loadedImages2[0], 1);          // Draw first normally.
+}).catch(err => {
+	console.error("Image load failed:", err);
+});
+
+
+// Swap method Jazz guy.
+function doSwap() {
+	if (loadedImages2.length < 2) return;
+
+	sampleImages2CanBeSwapped = false;
+
+	const from = loadedImages2[currentIndex];
+	currentIndex = (currentIndex + 1) % loadedImages2.length;
+	const to = loadedImages2[currentIndex];
+
+	animateTransition(from, to, 750);
+}
+
+function swapImageOnJazzHover() {
+	if(sampleImages2CanBeSwapped)
+	{
+		// First swap immediately.
+		doSwap();
+		
+		// Then one more swap after 3 seconds.
+		setTimeout(() => {
+			doSwap();
+			sampleImages2CanBeSwapped = true; // Reset after timeout.
+		}, 3000);
+	}
 }
 
 function jazzEatsCarrot(audioSrc) {
@@ -189,8 +246,8 @@ function jazzEatsCarrot(audioSrc) {
 	}, { once: true });
 
 	jazz.addEventListener('animationstart', function (event) {
-		//Jazz started to move
-		//Todo calc distances and move accordingly. This won't work all screen sizes
+		// Jazz started to move.
+		// Todo calc distances and move accordingly. This won't work all screen sizes.
 		console.log("Jazz started to move.")
 		setTimeout(() => {
 			playAudio(audioSrc);
