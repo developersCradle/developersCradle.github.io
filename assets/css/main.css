@@ -2855,11 +2855,17 @@ ul.actions {
 }
 
 ul.actions li {
-	padding: 0 0 0 1rem;
+	padding: 0.5rem 0 0 1rem;
 	vertical-align: middle;
 }
 
 ul.actions.special {
+	
+
+	display: flex;
+  	 flex-wrap: wrap;
+  
+
 	-moz-justify-content: center;
 	-webkit-justify-content: center;
 	-ms-justify-content: center;
