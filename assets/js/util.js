@@ -8,13 +8,13 @@ let sampleImages2CanBeSwapped = true;
 
 const loadedImages = [];
 const sampleImages = [
-	"images/theJavaRabbit.png",
+	"images/JazzWentBraziiil.png",
 	"images/rxRabbitSTROOONG.png"
 ];
 
 const loadedImages2 = [];
 const sampleImages2 = [
-	"images/theJavaRabbit.png",
+	"images/JazzWentBraziiil.png",
 	"images/MeeeeItRabbit.png"
 ];
 
