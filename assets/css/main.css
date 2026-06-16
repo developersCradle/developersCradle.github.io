@@ -56,14 +56,14 @@
 }
 
 .stage {
-    width: 600px;
-    height: 400px;
+    width: min(600px, 100%);
+    aspect-ratio: 3 / 2; /* 600x400 ratio */
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    margin: 0 auto; /* center horizontally */
+    margin: 0 auto;
 }
 
 #canvas {
