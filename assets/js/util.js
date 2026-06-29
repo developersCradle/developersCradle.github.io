@@ -256,13 +256,12 @@ function jazzEatsCarrot(audioSrc) {
 	}, { once: true });
 }
 
-
-function CheckTheCode(audioSrc, destUrl) {
+function transferToUrl(audioSrc, destUrl, timeout = 1500) {
 
 	playAudio(audioSrc);
 	setTimeout(function () {
 		window.location = destUrl;
-	}, 1500);
+	}, timeout);
 
 }
 

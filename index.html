@@ -13,7 +13,7 @@
 <head>
 	<a onmouseleave="swapImageOnHoverOnBanner()"
 		onmouseenter="swapImageOnHoverOnBanner(); playAudio('\\assets\\sounds\\MENU-CLICK.WAV');"
-		onclick="CheckTheCode('\\assets\\sounds\\reactiveManifesto.mp3', 'http://www.reactivemanifesto.org/')"> <img
+		onclick="transferToUrl('\\assets\\sounds\\reactiveManifesto.mp3', 'http://www.reactivemanifesto.org/')"> <img
 			style="border: 0; position: fixed; left: 0; top:0; z-index: 9000"
 			src="//d379ifj7s9wntv.cloudfront.net/reactivemanifesto/images/ribbons/we-are-reactive-white-left.png">
 	</a>
@@ -41,14 +41,16 @@
 					onmouseover="playAudio('\\assets\\sounds\\what i am doing brah.mp3'); swapImageOnJazzHover()" /></p>
 
 			<ul class="icons">
-				<li><a onclick="CheckTheCode('\\assets\\sounds\\work-work-peon.mp3', 'https://github.com/developersCradle')"
+				<li><a onclick="transferToUrl('\\assets\\sounds\\work-work-peon.mp3', 'https://github.com/developersCradle')"
 						class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-				<li><a onclick="CheckTheCode('\\assets\\sounds\\ready-to-work-peon.mp3', 'https://www.linkedin.com/in/heikki-siikavirta/')"
-						class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
-				<li><a href="https://www.hackerrank.com/profile/heikki_siikavir1"
-						class="icon brands fa-hackerrank"><span class="label">Hackerrank</span></a></li>
+				<li><a onclick="transferToUrl('\\assets\\sounds\\ready-to-work-peon.mp3', 'https://www.linkedin.com/in/heikki-siikavirta/')"
+						class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+				<li><a onclick="transferToUrl('\\assets\\sounds\\yooooooooooooooooooooooooo.mp3', 'https://www.hackerrank.com/profile/heikki_siikavir1')"
+						class="icon brands fa-hackerrank"><span class="label">HackeRank!</span></a></li>
 				<li><a href="https://www.khanacademy.org/profile/dreamLiver" class="icon brands fa-solid fa-k"><span
 							class="label">Khan Academy</span></a></li>
+				<li><a onclick="transferToUrl('\\assets\\sounds\\i-am-studying-at-udemy.mp3', 'https://www.udemy.com/user/heikki-siikavirta-2/', 4000)"
+						<span class="label">Udemy</span></a></li>
 			</ul>
 		</div>
 
@@ -82,7 +84,7 @@
 				<ul class="actions special">
 					<li><a href="https://github.com/developersCradle/notebook?tab=readme-ov-file#picture-from-toy-trail"
 							class="button large">Check the details📖!</a></li>
-					<li><a onclick="CheckTheCode('\\assets\\sounds\\work-complete-peon.mp3', 'https://www.youtube.com/watch?v=2ItnT4k01Cs')"
+					<li><a onclick="transferToUrl('\\assets\\sounds\\work-complete-peon.mp3', 'https://www.youtube.com/watch?v=2ItnT4k01Cs')"
 							class="button large">Check the video🎞️!</a></li>
 				</ul>
 			</article>
@@ -95,31 +97,31 @@
 								Country Service.</a></h2>
 					</header>
 					<a href="https://github.com/developersCradle/springboot-microservices/tree/main#challenge-description-country-service"
-						class="image fit"><img src="images/nordeaLogo.gif" alt="nordea" /></a>
+						class="image fit"><img src="images/Country_Service_Opening_The_Flag.gif"
+							alt="Nordea microservice!" /></a>
 					<p><b> Microservice with front end.</b> Shows countries and, in addition, provides more detailed
 						information per country. Java, Docker, Nginx, Angular, Spring-boot, Microservice, Netty,
 						Integration-testing, Junit, WireMock, Resilience, Bean validation, Springwebflux, Externalapi.
 					</p>
 					<ul class="actions special">
 						<li><input type="button"
-								onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/springboot-microservices/tree/main#challenge-description-country-service')"
+								onclick="transferToUrl('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/springboot-microservices/tree/main#challenge-description-country-service')"
 								value="Check the code‍💻!" /></li>
 					</ul>
 				</article>
 				<article>
 					<header>
-						<h2><a
-								href="https://github.com/developersCradle/office-furniture-selling-application#fikuro">
+						<h2><a href="https://github.com/developersCradle/office-furniture-selling-application#fikuro">
 								Office Furniture Selling Application.</a></h2>
 					</header>
 					<a href="https://github.com/developersCradle/office-furniture-selling-application#fikuro"
-						class="image fit"><img src="images/fikuro.png" alt="figuro pic!" /></a>
+						class="image fit"><img src="images/Reporting_Page_Currently.jpg" alt="Figuro pic!" /></a>
 					<p> <b>Office Furniture Selling Application with reporting feature!</b> Java, Spring Boot, Docker,
 						Docker Compose, REST, PostgreSQL, Hibernate, Thymeleaf, OpenFeign, Lombok, JUnit. </p>
 					<ul class="actions special">
 						<li>
 							<input type="button"
-								onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/office-furniture-selling-application#fikuro')"
+								onclick="transferToUrl('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/office-furniture-selling-application#fikuro')"
 								value="Check the code‍💻!" />
 						</li>
 					</ul>
@@ -130,13 +132,13 @@
 						<h2><a href="https://github.com/developersCradle/code-challange-rest-api#codemen_logo">REST CRUD
 								API.</a></h2>
 					</header>
-					<a href="https://github.com/developersCradle/code-challange-rest-api#codemen_logo" class="image fit"><img src="images/codemenLogo.png" alt="Code Men logo!"
-							height=110px" /></a>
+					<a href="https://github.com/developersCradle/code-challange-rest-api#codemen_logo"
+						class="image fit"><img src="images/codemenLogo.png" alt="Code Men logo!" height=110px" /></a>
 					<p><b>REST API with Spring Boot.</b> Java, Spring Boot, Docker, Docker Compose, Swagger, OpenJDK,
 						MySQL, REST, Integration Test. </p>
 					<ul class="actions special">
 						<li><input type="button"
-								onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challange-rest-api#codemen_logo')"
+								onclick="transferToUrl('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challange-rest-api#codemen_logo')"
 								value="Check the code‍💻!" /></li>
 					</ul>
 				</article>
@@ -149,11 +151,11 @@
 					</header>
 					<!-- GitHub redirects form old URL to new one, but one should use the latest URL since Policies can change  -->
 					<a href="https://github.com/developersCradle/weather-station#kuvia-projektista?trk=public_profile_project-button"
-						class="image fit"><img src="images/centriaSaaAsema.jpg" alt="Weather station is here" /></a>
+						class="image fit"><img src="images/Sää_Asema.gif" alt="Weather station is here!" /></a>
 					<p><b>Weather stations with Raspberry Pi.</b> Html, Css, Python, Api, Php and C3 Library.</p>
 					<ul class="actions special">
 						<li><input type="button"
-								onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/weather-station#kuvia-projektista?trk=public_profile_project-button')"
+								onclick="transferToUrl('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/weather-station#kuvia-projektista?trk=public_profile_project-button')"
 								value="Check the code‍💻!" /></li>
 						<li><a href="http://secret.cop.fi/asema/anturit.php" class="button">Check the live!</a></li>
 					</ul>
@@ -172,7 +174,7 @@
 						and Maven.</p>
 					<ul class="actions special">
 						<li><input type="button"
-								onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challenge-database-optimization#domaCare')"
+								onclick="transferToUrl('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challenge-database-optimization#domaCare')"
 								value="Check the code‍💻!" /></li>
 					</ul>
 				</article>
@@ -193,7 +195,7 @@
 
 					<ul class="actions special">
 						<li><input type="button"
-								onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challenge-to-do-software#logos')"
+								onclick="transferToUrl('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/code-challenge-to-do-software#logos')"
 								value="Check the code‍💻!" /></li>
 					</ul>
 				</article>
@@ -205,17 +207,18 @@
 								learning.</a></h2>
 					</header>
 					<a href="https://github.com/developersCradle/reactive-programming/tree/main/Reactive%20Programming%20in%20Modern%20Java%20using%20Project%20Reactor/Section%2009#section-09-combining-flux-and-mono"
-						class="image fit"><img src="images/Hand_Writing_On_The_Paper.jpg" height="300px" alt="Learning picture!" /></a>
+						class="image fit"><img src="images/Hand_Writing_On_The_Paper.jpg" height="300px"
+							alt="Learning picture!" /></a>
 					<p>Many repositories include course learning focused mostly on Full stack development. <b>Not just
 							watch and forget.</b> Example chapter from <i>Software Patterns</i> and other one from
 						<i>Reactive Programming in Project Reactor</i>. There is also <i>traditional books</i>!
 					</p>
 					<ul class="actions special">
-						<li><a onclick="CheckTheCode('\\assets\\sounds\\work-work-peon.mp3', 'https://github.com/developersCradle/designg-patterns-and-software-architecture/tree/main/Design%20Patterns%20in%20Java/src/Section%2015#section-15-command')"
+						<li><a onclick="transferToUrl('\\assets\\sounds\\work-work-peon.mp3', 'https://github.com/developersCradle/designg-patterns-and-software-architecture/tree/main/Design%20Patterns%20in%20Java/src/Section%2015#section-15-command')"
 								class="button">Check example chapter 📖!</a></li>
-						<li><a onclick="CheckTheCode('\\assets\\sounds\\work-work-peon.mp3', 'https://github.com/developersCradle/reactive-programming/tree/main/Reactive%20Programming%20in%20Modern%20Java%20using%20Project%20Reactor/Section%2009#section-09-combining-flux-and-mono')"
+						<li><a onclick="transferToUrl('\\assets\\sounds\\work-work-peon.mp3', 'https://github.com/developersCradle/reactive-programming/tree/main/Reactive%20Programming%20in%20Modern%20Java%20using%20Project%20Reactor/Section%2009#section-09-combining-flux-and-mono')"
 								class="button">Other example chapter✍🏻!</a></li>
-						<li><a onclick="CheckTheCode('\\assets\\sounds\\work-work-peon.mp3', 'https://github.com/developersCradle/books#studying')"
+						<li><a onclick="transferToUrl('\\assets\\sounds\\work-work-peon.mp3', 'https://github.com/developersCradle/books#studying')"
 								class="button">It books📚!!</a></li>
 					</ul>
 				</article>
@@ -230,23 +233,23 @@
 					<p> <b>Angular todo list app</b> - mini project. Driving concepts in with small mini projects.</p>
 					<ul class="actions special">
 						<li><input type="button"
-								onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/angular-todo-list#angular-todo-list')"
+								onclick="transferToUrl('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/angular-todo-list#angular-todo-list')"
 								value="Check the code‍💻!" /></li>
 					</ul>
 				</article>
 
 				<article>
 					<header>
-						<h2><a
-								href="https://github.com/developersCradle/jchess?tab=readme-ov-file#jchess"> Chess
+						<h2><a href="https://github.com/developersCradle/jchess?tab=readme-ov-file#jchess"> Chess
 								engine with Java.</a></h2>
 					</header>
 					🚧Work on going!🚧
-					<a href="https://github.com/developersCradle/jchess?tab=readme-ov-file#jchess" class="image fit"><img src="images/chessBanner.jpg" alt="Chess Engine In Java!" />Coming
+					<a href="https://github.com/developersCradle/jchess?tab=readme-ov-file#jchess"
+						class="image fit"><img src="images/Chess_Move.gif" alt="Chess Engine In Java!" />Coming
 						soon!</a>
 					<ul class="actions special">
 						<li><input type="button"
-								onclick="CheckTheCode('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/jchess?tab=readme-ov-file#jchess')"
+								onclick="transferToUrl('\\assets\\sounds\\WOHOO.WAV', 'https://github.com/developersCradle/jchess?tab=readme-ov-file#jchess')"
 								value="Check the code‍💻!" /></li>
 					</ul>
 				</article>
@@ -263,7 +266,7 @@
 						soon!</a>
 					<ul class="actions special">
 						<li><input type="button"
-								onclick="CheckTheCode('\\assets\\sounds\\Wolfenstein3dDeath.wav', '#'); fillRedEffect();"
+								onclick="transferToUrl('\\assets\\sounds\\Wolfenstein3dDeath.wav', '#'); fillRedEffect();"
 								value="Check the code‍💻!" /></li>
 					</ul>
 				</article>
