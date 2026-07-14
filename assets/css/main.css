@@ -35,11 +35,10 @@
 	}
 }
 
-/* This supposed to be top as possible */
+/* This supposed to be top as possible  */
 * {
-	cursor: url('../cursor/orc.cur'), auto !important;
-	;
-}
+	cursor: url("../../images/Zug_Zug.png") 0 0, auto !important;
+} 
 
 #redEffect {
 	position: fixed;

@@ -11,6 +11,8 @@ Warcraft 2 sounds:
 https://www.thanatosrealms.com/war2/horde-sounds
 Wolfenstein - 3D sounds:
 https://sounds.spriters-resource.com/game_boy_advance/wolfenstein3d/asset/446290/
-Cursor:
+The old Cursor:
 http://www.rw-designer.com/cursor-set/warcraft-3-orc
+The new Cursor:
+https://imgur.com/gallery/warcaft-2-orc-cursor-6VliqdK
 
