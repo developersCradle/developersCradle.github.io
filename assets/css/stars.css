@@ -1,10 +1,16 @@
 #stars,
 #stars2,
-#stars3 {
+#stars3,
+#twinkle {
     position: fixed;
     inset: 0;
     background: transparent;
     pointer-events: none;
+
+    /* Performance hint */
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 #stars {
@@ -19,48 +25,30 @@
     animation: moveStars 150s linear infinite;
 }
 
-@keyframes moveStars {
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(-100vh);
-    }
-}
-
 #twinkle {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
     animation:
         moveStars 120s linear infinite,
         twinkle 2.5s ease-in-out infinite;
     filter: drop-shadow(0 0 6px #00ff66);
 }
 
-@keyframes twinkle {
+@keyframes moveStars {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(0, -100vh, 0);
+    }
+}
 
-    0%,
-    100% {
+@keyframes twinkle {
+    0%, 100% {
         opacity: .4;
         filter: drop-shadow(0 0 2px #00ff66);
     }
 
     50% {
         opacity: 1;
-        filter: drop-shadow(0 0 10px #00ff66);
+        filter: drop-shadow(0 0 8px #00ff66);
     }
-}
-
-#twinkle1 {
-    animation-delay: 0s;
-}
-
-#twinkle2 {
-    animation-delay: .8s;
-}
-
-#twinkle3 {
-    animation-delay: 1.6s;
 }

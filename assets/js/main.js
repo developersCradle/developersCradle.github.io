@@ -1,14 +1,15 @@
+let resizeTimer;
 
 function generateStars() {
+	
 	const width = window.innerWidth;
 	const height = window.innerHeight;
 	const area = width * height;
 
-	generateLayer("stars", 1.5, width, height, Math.floor(area / 3500), "#fff");
-	generateLayer("stars2", 2, width, height, Math.floor(area / 8000), "#fff");
-	generateLayer("stars3", 3, width, height, Math.floor(area / 18000), "#fff");
-
-	generateLayer("twinkle", 4, width, height, 15, "#00ff66");
+	generateLayer("stars", 1.5, width, height, Math.floor(area / 6000), "#fff");
+	generateLayer("stars2", 2, width, height, Math.floor(area / 12000), "#fff");
+	generateLayer("stars3", 3, width, height, Math.floor(area / 25000), "#fff");
+	generateLayer("twinkle", 4, width, height, 8, "#00ff66");
 }
 
 function generateLayer(id, size, width, height, count, color) {
@@ -30,9 +31,10 @@ function generateLayer(id, size, width, height, count, color) {
 
 generateStars();
 
-
-// Updates when the viewport changes (resize, maximize, orientation, zoom)
-window.addEventListener("resize", generateStars);
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(generateStars, 200);
+});
 
 (function ($) {
 
