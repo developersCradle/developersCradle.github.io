@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="assets/css/stars.css" />
 <link rel="stylesheet" href="assets/css/main.css" />
 <script src="https://unpkg.com/howler@2.2.3/dist/howler.min.js"></script>
+<script src="assets/js/mouse-shake.js"></script>
+
 <noscript>
 	<link rel="stylesheet" href="assets/css/noscript.css" />
 </noscript>
@@ -263,12 +265,11 @@
 					🚧Work on going!🚧
 
 					<a href="#" class="image fit"><img src="images/Wolfenstein_3D_In_Java.gif"
-							alt="Wolfenstein 3d In Java!" />Coming
-						soon!</a>
+							alt="Wolfenstein 3d In Java!"/> Coming soon! </a>
 					<ul class="actions special">
 						<li><input type="button"
 								onclick="transferToUrl('\\assets\\sounds\\Wolfenstein_3d_Death_Sound.wav', '#'); fillRedEffect();"
-								value="Check the code‍💻!" /></li>
+								value="Check the code‍💻!"/></li>
 					</ul>
 				</article>
 
@@ -284,6 +285,13 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<!-- React to detected shaking -->
+	<script>
+		document.addEventListener("mouseShakeDetected", (event) => {
+			console.log("Too fast speed on the cursor cowboy!", event.detail);
+			playAudio('\\assets\\sounds\\Rauhoitu_Nyt_Ja_Kohta_Saa_Mennä_Katsomaan_Projekteja.m4a');
+		});
+	</script>
 
 </body>
 
